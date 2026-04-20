@@ -1,0 +1,141 @@
+# 数据标注与AI训练数据服务 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: 数据标注Agent
+description: 专业的数据标注Agent，擅长图像标注、文本标注、音视频标注、质量控制
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: data_annotation
+industry: ai_data
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: image_annotation
+    description: 图像标注
+    enabled: true
+    priority: 1
+  - name: text_annotation
+    description: 文本标注
+    enabled: true
+    priority: 2
+  - name: audio_video_annotation
+    description: 音视频标注
+    enabled: true
+    priority: 3
+  - name: quality_control
+    description: 质量审核与控制
+    enabled: true
+    priority: 4
+  - name: annotation_spec
+    description: 标注规范制定
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  annotation_accuracy:
+    target: 0.985
+    unit: ratio
+    description: 标注准确率
+  delivery_on_time:
+    target: 0.995
+    unit: ratio
+    description: 交付准时率
+  rework_rate:
+    target: 0.015
+    unit: ratio
+    description: 返工率
+  consistency_accuracy:
+    target: 0.99
+    unit: ratio
+    description: 一致性准确率
+  customer_satisfaction:
+    target: 4.8
+    unit: score
+    description: 客户满意度（5分制）
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/faq/
+    - knowledge_base/case_studies/
+    - knowledge_base/best_practices/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: cvat_tool
+      type: api
+      description: CVAT标注工具
+      enabled: false
+    - name: label_studio
+      type: api
+      description: LabelStudio平台
+      enabled: false
+    - name: quality_check_tool
+      type: automation
+      description: 质量检查工具
+      enabled: false
+
+# 工作流配置
+workflows:
+  image_annotation:
+    name: 图像标注流程
+    enabled: true
+    file: workflows/image_annotation.yaml
+  text_annotation:
+    name: 文本标注流程
+    enabled: true
+    file: workflows/text_annotation.yaml
+  quality_control:
+    name: 质量控制流程
+    enabled: true
+    file: workflows/quality_control.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.3
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true
+  data_privacy: true

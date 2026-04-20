@@ -1,0 +1,140 @@
+# IT运维与桌面支持 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: IT运维Agent
+description: 专业的IT运维与桌面支持Agent，擅长桌面故障处理、网络运维、系统管理、安全保障
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: it_operations
+industry: it_support
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: desktop_support
+    description: 桌面支持与故障处理
+    enabled: true
+    priority: 1
+  - name: network_operations
+    description: 网络运维与管理
+    enabled: true
+    priority: 2
+  - name: system_administration
+    description: 系统管理与维护
+    enabled: true
+    priority: 3
+  - name: security_management
+    description: 安全管理与保障
+    enabled: true
+    priority: 4
+  - name: knowledge_base
+    description: 知识库建设与培训
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  first_contact_resolution:
+    target: 0.85
+    unit: ratio
+    description: 一线解决率
+  response_time:
+    target: 5
+    unit: minutes
+    description: 平均响应时间
+  problem_resolution_time:
+    target: 24
+    unit: hours
+    description: 问题解决时间
+  system_availability:
+    target: 0.999
+    unit: ratio
+    description: 系统可用性
+  customer_satisfaction:
+    target: 4.8
+    unit: score
+    description: 客户满意度（5分制）
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/faq/
+    - knowledge_base/troubleshooting/
+    - knowledge_base/best_practices/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: remote_support
+      type: api
+      description: 远程支持工具
+      enabled: false
+    - name: monitoring_system
+      type: api
+      description: 监控系统API
+      enabled: false
+    - name: ticketing_system
+      type: automation
+      description: 工单系统
+      enabled: false
+
+# 工作流配置
+workflows:
+  incident_handling:
+    name: 事件处理流程
+    enabled: true
+    file: workflows/incident_handling.yaml
+  problem_management:
+    name: 问题管理流程
+    enabled: true
+    file: workflows/problem_management.yaml
+  change_management:
+    name: 变更管理流程
+    enabled: true
+    file: workflows/change_management.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.5
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true

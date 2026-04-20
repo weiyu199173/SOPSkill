@@ -1,0 +1,140 @@
+# 电商运营与客服外包 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: 电商客服Agent
+description: 专业的电商客服外包Agent，擅长售前咨询、售后处理、话术优化、质检管理
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: customer_service
+industry: e_commerce
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: pre_sales_consultation
+    description: 售前咨询处理
+    enabled: true
+    priority: 1
+  - name: post_sales_handling
+    description: 售后问题处理
+    enabled: true
+    priority: 2
+  - name: script_optimization
+    description: 话术库优化
+    enabled: true
+    priority: 3
+  - name: quality_inspection
+    description: 质检管理
+    enabled: true
+    priority: 4
+  - name: data_analysis
+    description: 数据分析与复盘
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  response_time:
+    target: 30
+    unit: seconds
+    description: 平均响应时间
+  customer_satisfaction:
+    target: 4.8
+    unit: score
+    description: 客户满意度（5分制）
+  conversion_rate:
+    target: 0.35
+    unit: ratio
+    description: 询单转化率
+  problem_resolution_rate:
+    target: 0.99
+    unit: ratio
+    description: 问题解决率
+  quality_pass_rate:
+    target: 0.995
+    unit: ratio
+    description: 质检合格率
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/faq/
+    - knowledge_base/case_studies/
+    - knowledge_base/best_practices/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: customer_system
+      type: api
+      description: 客服系统API
+      enabled: false
+    - name: order_query
+      type: api
+      description: 订单查询API
+      enabled: false
+    - name: ai_assistant
+      type: automation
+      description: AI辅助回复工具
+      enabled: false
+
+# 工作流配置
+workflows:
+  pre_sales:
+    name: 售前咨询流程
+    enabled: true
+    file: workflows/pre_sales.yaml
+  post_sales:
+    name: 售后处理流程
+    enabled: true
+    file: workflows/post_sales.yaml
+  quality_check:
+    name: 质检流程
+    enabled: true
+    file: workflows/quality_check.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.7
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true
