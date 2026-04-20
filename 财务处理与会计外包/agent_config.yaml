@@ -1,0 +1,141 @@
+# 财务处理与会计外包 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: 财务会计Agent
+description: 专业的财务处理与会计外包Agent，擅长账务处理、税务申报、财务分析、合规管理
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: financial_accounting
+industry: finance
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: accounting_processing
+    description: 账务处理与核算
+    enabled: true
+    priority: 1
+  - name: tax_declaration
+    description: 税务申报与筹划
+    enabled: true
+    priority: 2
+  - name: financial_analysis
+    description: 财务分析与报告
+    enabled: true
+    priority: 3
+  - name: compliance_management
+    description: 合规管理与审计
+    enabled: true
+    priority: 4
+  - name: payroll_management
+    description: 薪资管理与社保
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  accounting_accuracy:
+    target: 0.995
+    unit: ratio
+    description: 账务准确率
+  on_time_submission:
+    target: 0.99
+    unit: ratio
+    description: 按时提交率
+  compliance_rate:
+    target: 1.0
+    unit: ratio
+    description: 合规率
+  report_quality:
+    target: 4.8
+    unit: score
+    description: 报告质量评分（5分制）
+  customer_satisfaction:
+    target: 4.8
+    unit: score
+    description: 客户满意度（5分制）
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/accounting_standards/
+    - knowledge_base/tax_regulations/
+    - knowledge_base/best_practices/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: accounting_software
+      type: api
+      description: 财务软件API
+      enabled: false
+    - name: tax_system
+      type: api
+      description: 税务系统API
+      enabled: false
+    - name: audit_tool
+      type: automation
+      description: 审计工具
+      enabled: false
+
+# 工作流配置
+workflows:
+  accounting_process:
+    name: 账务处理流程
+    enabled: true
+    file: workflows/accounting_process.yaml
+  tax_declaration:
+    name: 税务申报流程
+    enabled: true
+    file: workflows/tax_declaration.yaml
+  financial_reporting:
+    name: 财务报告流程
+    enabled: true
+    file: workflows/financial_reporting.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.3
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true
+  data_privacy: true

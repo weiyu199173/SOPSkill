@@ -1,0 +1,140 @@
+# 数字内容制作与营销推广 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: 内容营销Agent
+description: 专业的数字内容制作与营销推广Agent，擅长内容创作、社媒运营、活动策划、数据分析
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: content_marketing
+industry: digital_marketing
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: content_creation
+    description: 内容创作与制作
+    enabled: true
+    priority: 1
+  - name: social_media
+    description: 社媒平台运营
+    enabled: true
+    priority: 2
+  - name: campaign_planning
+    description: 营销活动策划
+    enabled: true
+    priority: 3
+  - name: data_analysis
+    description: 数据分析与优化
+    enabled: true
+    priority: 4
+  - name: brand_building
+    description: 品牌建设与推广
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  content_quality_score:
+    target: 4.8
+    unit: score
+    description: 内容质量评分（5分制）
+  engagement_rate:
+    target: 0.05
+    unit: ratio
+    description: 互动率
+  reach_impressions:
+    target: 100000
+    unit: count
+    description: 曝光量
+  conversion_rate:
+    target: 0.03
+    unit: ratio
+    description: 转化率
+  customer_satisfaction:
+    target: 4.8
+    unit: score
+    description: 客户满意度（5分制）
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/content_templates/
+    - knowledge_base/best_practices/
+    - knowledge_base/case_studies/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: content_editor
+      type: api
+      description: 内容编辑工具
+      enabled: false
+    - name: social_media_api
+      type: api
+      description: 社媒平台API
+      enabled: false
+    - name: analytics_tool
+      type: automation
+      description: 数据分析工具
+      enabled: false
+
+# 工作流配置
+workflows:
+  content_creation:
+    name: 内容创作流程
+    enabled: true
+    file: workflows/content_creation.yaml
+  social_media_operation:
+    name: 社媒运营流程
+    enabled: true
+    file: workflows/social_media_operation.yaml
+  campaign_management:
+    name: 营销活动管理流程
+    enabled: true
+    file: workflows/campaign_management.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.8
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true

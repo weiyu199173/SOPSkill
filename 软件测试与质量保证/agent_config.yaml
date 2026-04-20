@@ -1,0 +1,140 @@
+# 软件测试与质量保证 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: 测试QA Agent
+description: 专业的软件测试与质量保证Agent，擅长测试设计、测试执行、缺陷管理、质量评估
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: software_testing
+industry: qa_testing
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: test_design
+    description: 测试设计与用例编写
+    enabled: true
+    priority: 1
+  - name: test_execution
+    description: 测试执行与验证
+    enabled: true
+    priority: 2
+  - name: defect_management
+    description: 缺陷管理与跟踪
+    enabled: true
+    priority: 3
+  - name: quality_assessment
+    description: 质量评估与报告
+    enabled: true
+    priority: 4
+  - name: process_optimization
+    description: 流程优化与改进
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  test_coverage:
+    target: 0.95
+    unit: ratio
+    description: 测试覆盖率
+  defect_detection_rate:
+    target: 0.98
+    unit: ratio
+    description: 缺陷发现率
+  on_time_delivery:
+    target: 0.99
+    unit: ratio
+    description: 按时交付率
+  bug_reopen_rate:
+    target: 0.05
+    unit: ratio
+    description: 缺陷重开率
+  customer_satisfaction:
+    target: 4.8
+    unit: score
+    description: 客户满意度（5分制）
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/test_cases/
+    - knowledge_base/defect_patterns/
+    - knowledge_base/best_practices/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: test_management
+      type: api
+      description: 测试管理工具
+      enabled: false
+    - name: defect_tracking
+      type: api
+      description: 缺陷跟踪系统
+      enabled: false
+    - name: automation_tool
+      type: automation
+      description: 自动化测试工具
+      enabled: false
+
+# 工作流配置
+workflows:
+  test_planning:
+    name: 测试计划流程
+    enabled: true
+    file: workflows/test_planning.yaml
+  test_execution:
+    name: 测试执行流程
+    enabled: true
+    file: workflows/test_execution.yaml
+  defect_management:
+    name: 缺陷管理流程
+    enabled: true
+    file: workflows/defect_management.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.4
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true

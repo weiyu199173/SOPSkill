@@ -1,0 +1,140 @@
+# 电商数据分析与决策支持 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: 电商数据Agent
+description: 专业的电商数据分析与决策支持Agent，擅长数据采集、分析挖掘、报告撰写、决策建议
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: e_commerce_analytics
+industry: e_commerce
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: data_collection
+    description: 数据采集与整理
+    enabled: true
+    priority: 1
+  - name: analysis_mining
+    description: 数据分析与挖掘
+    enabled: true
+    priority: 2
+  - name: report_writing
+    description: 分析报告撰写
+    enabled: true
+    priority: 3
+  - name: decision_support
+    description: 决策建议提供
+    enabled: true
+    priority: 4
+  - name: forecasting_prediction
+    description: 预测与预警
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  analysis_accuracy:
+    target: 0.95
+    unit: ratio
+    description: 分析准确率
+  report_timeliness:
+    target: 0.99
+    unit: ratio
+    description: 报告及时率
+  decision_adoption_rate:
+    target: 0.8
+    unit: ratio
+    description: 建议采纳率
+  business_impact:
+    target: 0.1
+    unit: ratio
+    description: 业务提升率
+  customer_satisfaction:
+    target: 4.8
+    unit: score
+    description: 客户满意度（5分制）
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/analysis_methods/
+    - knowledge_base/business_patterns/
+    - knowledge_base/best_practices/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: data_platform
+      type: api
+      description: 数据平台集成
+      enabled: false
+    - name: bi_tool
+      type: api
+      description: BI分析工具
+      enabled: false
+    - name: visualization_tool
+      type: automation
+      description: 可视化工具
+      enabled: false
+
+# 工作流配置
+workflows:
+  data_analysis:
+    name: 数据分析流程
+    enabled: true
+    file: workflows/data_analysis.yaml
+  report_generation:
+    name: 报告生成流程
+    enabled: true
+    file: workflows/report_generation.yaml
+  decision_support:
+    name: 决策支持流程
+    enabled: true
+    file: workflows/decision_support.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.5
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true

@@ -1,0 +1,140 @@
+# 在线教育与课程制作 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: 教育课程Agent
+description: 专业的在线教育与课程制作Agent，擅长课程设计、内容开发、教学优化、效果评估
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: online_education
+industry: education
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: curriculum_design
+    description: 课程设计与规划
+    enabled: true
+    priority: 1
+  - name: content_development
+    description: 内容开发与制作
+    enabled: true
+    priority: 2
+  - name: teaching_optimization
+    description: 教学优化与改进
+    enabled: true
+    priority: 3
+  - name: effect_evaluation
+    description: 效果评估与分析
+    enabled: true
+    priority: 4
+  - name: learner_support
+    description: 学习支持与服务
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  completion_rate:
+    target: 0.85
+    unit: ratio
+    description: 课程完成率
+  satisfaction_score:
+    target: 4.8
+    unit: score
+    description: 学员满意度（5分制）
+  knowledge_retention:
+    target: 0.8
+    unit: ratio
+    description: 知识留存率
+  on_time_delivery:
+    target: 0.99
+    unit: ratio
+    description: 按时交付率
+  recommendation_rate:
+    target: 0.9
+    unit: ratio
+    description: 推荐率
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/curriculum_templates/
+    - knowledge_base/teaching_methods/
+    - knowledge_base/best_practices/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: lms_integration
+      type: api
+      description: 学习管理系统集成
+      enabled: false
+    - name: authoring_tool
+      type: api
+      description: 课程创作工具
+      enabled: false
+    - name: analytics_platform
+      type: automation
+      description: 学习分析平台
+      enabled: false
+
+# 工作流配置
+workflows:
+  curriculum_development:
+    name: 课程开发流程
+    enabled: true
+    file: workflows/curriculum_development.yaml
+  content_creation:
+    name: 内容创作流程
+    enabled: true
+    file: workflows/content_creation.yaml
+  quality_review:
+    name: 质量评审流程
+    enabled: true
+    file: workflows/quality_review.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.7
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true

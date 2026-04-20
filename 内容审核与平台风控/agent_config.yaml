@@ -1,0 +1,140 @@
+# 内容审核与平台风控 Agent 配置
+# 版本: v1.0
+# 创建日期: 2026-04-20
+
+name: 风控审核Agent
+description: 专业的内容审核与平台风控Agent，擅长内容审核、风险识别、规则制定、应急处理
+version: 1.0.0
+author: SOPSkill Team
+
+agent_type: content_moderation
+industry: risk_control
+language: zh-CN
+
+# 核心能力配置
+capabilities:
+  - name: content_moderation
+    description: 内容审核与过滤
+    enabled: true
+    priority: 1
+  - name: risk_identification
+    description: 风险识别与评估
+    enabled: true
+    priority: 2
+  - name: rule_formulation
+    description: 审核规则制定
+    enabled: true
+    priority: 3
+  - name: emergency_response
+    description: 应急事件处理
+    enabled: true
+    priority: 4
+  - name: quality_control
+    description: 审核质量控制
+    enabled: true
+    priority: 5
+
+# KPI 指标配置
+kpi:
+  accuracy_rate:
+    target: 0.99
+    unit: ratio
+    description: 审核准确率
+  recall_rate:
+    target: 0.98
+    unit: ratio
+    description: 召回率
+  response_time:
+    target: 2
+    unit: hours
+    description: 平均响应时间（小时）
+  false_alarm_rate:
+    target: 0.02
+    unit: ratio
+    description: 误报率
+  customer_satisfaction:
+    target: 4.8
+    unit: score
+    description: 客户满意度（5分制）
+
+# 提示词模板路径
+prompts:
+  system: prompt_templates/system_prompt.txt
+  task: prompt_templates/task_prompt.txt
+  reflection: prompt_templates/reflection_prompt.txt
+
+# 知识库配置
+knowledge_base:
+  enabled: true
+  paths:
+    - knowledge_base/content_policies/
+    - knowledge_base/risk_cases/
+    - knowledge_base/best_practices/
+
+# 工具配置
+tools:
+  enabled: true
+  list:
+    - name: moderation_tool
+      type: api
+      description: 内容审核工具
+      enabled: false
+    - name: risk_detection
+      type: api
+      description: 风险检测系统
+      enabled: false
+    - name: case_management
+      type: automation
+      description: 案例管理系统
+      enabled: false
+
+# 工作流配置
+workflows:
+  content_review:
+    name: 内容审核流程
+    enabled: true
+    file: workflows/content_review.yaml
+  risk_management:
+    name: 风险管理流程
+    enabled: true
+    file: workflows/risk_management.yaml
+  emergency_response:
+    name: 应急响应流程
+    enabled: true
+    file: workflows/emergency_response.yaml
+
+# 评估配置
+evaluation:
+  enabled: true
+  test_cases_path: evaluation/test_cases/
+  benchmarks_path: evaluation/benchmarks/
+
+# 模型配置
+model:
+  provider: openai
+  model: gpt-4
+  temperature: 0.2
+  max_tokens: 2000
+  top_p: 0.9
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# 内存配置
+memory:
+  enabled: true
+  type: short_term
+  max_history: 50
+  retention_days: 30
+
+# 日志配置
+logging:
+  enabled: true
+  level: INFO
+  format: json
+  output_path: logs/
+
+# 安全配置
+security:
+  data_encryption: true
+  access_control: true
+  audit_log: true
